@@ -63,16 +63,16 @@
                 <div class="text-center">
                     <ul class="pagination pagination-sm">
                        	<c:if test="${pageVO.prev}">
-                        <li><a href="list.board?pageNum=${pageVO.startPage - 1}&amount=${pageVO.amount}">이전</a></li>
+                        <li><a href="bbs.board?pageNum=${pageVO.startPage - 1}&amount=${pageVO.amount}">이전</a></li>
                         </c:if>
                         		
                         <c:forEach var="num" begin="${pageVO.startPage}" end="${pageVO.endPage}">
                         <li  class="${num == pageVO.pageNum ? 'active' : '' }">
-                        	<a href="list.board?pageNum=${num}&amount=${pageVO.amount}">${num}</a></li>
+                        	<a href="bbs.board?pageNum=${num}&amount=${pageVO.amount}">${num}</a></li>
                         </c:forEach>
                         		
                         <c:if test="${pageVO.next}">
-                        <li><a href="list.board?pageNum=${pageVO.endPage + 1}&amount=${pageVO.amount}">다음</a></li>
+                        <li><a href="bbs.board?pageNum=${pageVO.endPage + 1}&amount=${pageVO.amount}">다음</a></li>
                         </c:if>
                     </ul>
                     <button class="btn btn-info pull-right" onclick="login_check()">글쓰기</button>

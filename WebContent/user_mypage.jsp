@@ -1,5 +1,7 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>  
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,18 +58,35 @@
                     </thead>
                     <tbody>
                     <c:forEach var="vo" items="${list}">
+                    	<c:if test="${vo.writer == sessionScope.user_id}">
                         <tr>
                             <td>${vo.bno}</td>
                             <td><a href="content.board?bno=${vo.bno}">${vo.title}</a></td>
                             <td>${vo.writer}</td>
                             <td>${vo.regdate}</td>
                         </tr>
+                        </c:if>
 					</c:forEach>
                     </tbody>
+
                 </table>
                     </div>
-                    
-                    
+                    <div class="text-center">
+                   <ul class="pagination pagination-sm">
+                       	<c:if test="${pageVO.prev}">
+                        <li><a href="mypage.user?pageNum=${pageVO.startPage - 1}&amount=${pageVO.amount}">이전</a></li>
+                        </c:if>
+                        		
+                        <c:forEach var="num" begin="${pageVO.startPage}" end="${pageVO.endPage}">
+                        <li  class="${num == pageVO.pageNum ? 'active' : '' }">
+                        	<a href="mypage.user?pageNum=${num}&amount=${pageVO.amount}">${num}</a></li>
+                        </c:forEach>
+                        		
+                        <c:if test="${pageVO.next}">
+                        <li><a href="mypage.user?pageNum=${pageVO.endPage + 1}&amount=${pageVO.amount}">다음</a></li>
+                        </c:if>
+                    </ul>
+                   </div> 
                 </div>
 
 

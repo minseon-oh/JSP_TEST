@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.test.board.service.BoardService;
+import com.test.board.service.ListServiceImpl;
 import com.test.user.service.DeleteServiceImpl;
 import com.test.user.service.JoinServiceImpl;
 import com.test.user.service.LoginServiceImpl;
@@ -84,7 +86,9 @@ public class UserController extends HttpServlet {
 			}
 			
 		}else if(command.equals("/mypage.user")) {
-		
+			
+			BoardService service2 = new ListServiceImpl();
+			service2.execute(request, response);
 			request.getRequestDispatcher("user_mypage.jsp").forward(request, response);			
 		
 		}else if(command.equals("/mypageinfo.user")) {

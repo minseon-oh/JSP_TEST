@@ -76,7 +76,7 @@
                     </form>
                     <div class="titlefoot">
                         <button class="btn" type="button" onclick="info_check()">수정</button>
-                        <button class="btn">목록</button>
+                        <button class="btn" onclick="history.go(-1)">목록</button>
                     </div>
                     
                 </div>

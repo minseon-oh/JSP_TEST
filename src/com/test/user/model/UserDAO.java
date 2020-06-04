@@ -224,41 +224,5 @@ public class UserDAO {
 		
 	}
 	
-	public ArrayList<BoardVO> myContent(String id) {
-		
-		ArrayList<BoardVO> list = new ArrayList<>();
-
-		String sql = "select *\r\n" + 
-				"from(\r\n" + 
-				"    select rownum rn,\r\n" + 
-				"            bno,\r\n" + 
-				"            title,\r\n" + 
-				"            writer,\r\n" + 
-				"            content,\r\n" + 
-				"            regdate\r\n" + 
-				"    )\r\n" + 
-				"where writer = ?";
-		
-		try {
-			
-			conn = ds.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) { 
-				BoardVO vo = new BoardVO(rs.getInt("bno"), rs.getString("title"), rs.getString("writer"), rs.getString("content"), rs.getTimestamp("regdate"));
-				list.add(vo);
-			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			JdbcUtil.close(conn, pstmt, null);
-		}
-		
-		return list;
-		
-	}
 	
 }
